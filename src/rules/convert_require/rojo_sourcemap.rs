@@ -156,21 +156,21 @@ impl RojoSourcemap {
 
         let relative_path_length = parents.len().saturating_add(descendants.len());
 
-        if !self.is_datamodel || relative_path_length <= target_ancestors.len() {
-            log::trace!("  ⨽ use Roblox path from script instance");
+        // if !self.is_datamodel || relative_path_length <= target_ancestors.len() {
+        //     log::trace!("  ⨽ use Roblox path from script instance");
 
-            let mut instance_path = InstancePath::from_script();
+        //     let mut instance_path = InstancePath::from_script();
 
-            for _ in 0..parents.len() {
-                instance_path.parent();
-            }
+        //     for _ in 0..parents.len() {
+        //         instance_path.parent();
+        //     }
 
-            self.index_descendants(
-                instance_path,
-                self.root_node.get_descendant(common_ancestor_id)?,
-                descendants.iter().rev(),
-            )
-        } else {
+        //     self.index_descendants(
+        //         instance_path,
+        //         self.root_node.get_descendant(common_ancestor_id)?,
+        //         descendants.iter().rev(),
+        //     )
+        //} else {
             log::trace!("  ⨽ use Roblox path from DataModel instance");
 
             self.index_descendants(
@@ -178,7 +178,7 @@ impl RojoSourcemap {
                 &self.root_node,
                 target_ancestors.iter().rev().skip(1),
             )
-        }
+        //}
     }
 
     fn index_descendants<'a>(
